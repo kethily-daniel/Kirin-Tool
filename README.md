@@ -1,9 +1,13 @@
 # Kirin-Tool
-**READ THE LICENSE BEFORE MODIFYING THE SOURCE!**
+> [!WARNING]
+> **THIS PROJECT IS NOT OPEN SOURCE, BUT RATHER SOURCE AVAILABLE**<br>
+> **READ THE LICENSE BEFORE MODIFYING THE SOURCE!**
 
 This is the ONLY free public Huawei tool with Kirin 990 support!
 
 You can rebrand, flash and unlock(even Kirin 990's bootloader!) Huawei devices!
+
+# Links
 
 Our telegram chat: https://t.me/kirintoolsupport
 
@@ -32,5 +36,7 @@ USDT Tether (TRC20): TD2sJbEmYa93sJhDBmTrvqmScqQSVTCfCK
 [TASZK Security Labs SL](https://taszk.io) for the head resend bootrom exploit
 
 [kasnria001](https://github.com/kasnria001) for decrypted xloaders and LOTS of help in general
+
+---
 
 *NOTICE: This tool is an independent software product and has not been authorized, sponsored, or otherwise approved by Huawei Technologies Co., Ltd. HiSilicon and Kirin are trademarks of Huawei Technologies Co., Ltd. All product and company names are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.*
