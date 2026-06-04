@@ -9,7 +9,11 @@ Our telegram chat: https://t.me/kirintoolsupport
 
 Our website: https://kirintool.cfd
 
-Donating: https://ko-fi.com/kirintool or:
+# Donating
+
+## Ko-Fi: https://ko-fi.com/kirintool
+
+## Crypto:
 
 BTC: bc1q70khwtwdp0jtpvfmct4gu8ktktzv5rurk0kdky
 
@@ -23,7 +27,7 @@ USDT SPL(SOL): 4CrT7dSL6kTCkJU4Fu4DT1LisU4rLFwbpE5GFS5wdEcR
 
 USDT Tether (TRC20): TD2sJbEmYa93sJhDBmTrvqmScqQSVTCfCK
 
-Credits:
+# Credits:
 
 [TASZK Security Labs SL](https://taszk.io) for the head resend bootrom exploit
 
