@@ -3,14 +3,20 @@
 > **THIS PROJECT IS NOT OPEN SOURCE, BUT RATHER SOURCE AVAILABLE**<br>
 > **READ THE LICENSE BEFORE MODIFYING THE SOURCE!**
 
+> [!WARNING]
+> **WE ARE NOT RESPONSIBLE FOR ANY BRICKED DEVICES, ERASED NM CARDS, LOST DATA, ETC**<br>
+> **EVERYTHING YOU DO WITH Kirin-Tool IS PURELY YOUR RESPONSIBILITY**
+
+
 This is the ONLY free public Huawei tool with Kirin 990 support!
 
 You can rebrand, flash and unlock(even Kirin 990's bootloader!) Huawei devices!
 
+We support Kirin 620-990 5g SoCs (As of 2.4, excluding 990 4g)!
+
 # Links
 
-Our telegram chat: https://t.me/kirintoolsupport
-
+Our telegram chat: https://t.me/kirintoolsupport<br>
 Our website: https://kirintool.cfd
 
 # Donating
