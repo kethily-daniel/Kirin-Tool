@@ -1,0 +1,165 @@
+<!-- Licensed to Kethily Daniel & NDXCode under one or more agreements. -->
+<!-- Kethily Daniel & NDXCode licenses this file to you under the Business Source License 1.1. -->
+<!-- See the LICENSE file in the project root for more information. -->
+
+<!--
+    Copyright (c) 2026 Kethily Daniel & NDXCode. All rights reserved.
+
+    Use of this software is governed by the Business Source License included
+    in the LICENSE file and at www.mariadb.com/bsl11.
+
+    Change Date: Four years from the date each version of the Licensed Work
+    is first publicly distributed.
+
+    On the Change Date, in accordance with the Business Source License,
+    use of this software will be governed by the GNU General Public License v3.0
+    or later (GPL-3.0-or-later).
+
+    Contact Information: https://kirintool.cfd
+-->
+    
+    <ui:ContentDialog x:Class="Kirin_Tool.UI.FastbootPartitionSelector"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  mc:Ignorable="d"
+                  Title="Select Partitions"
+                  DialogWidth="600"
+                  DialogHeight="500"
+                  PrimaryButtonText="Proceed"
+                  SecondaryButtonText="Cancel"
+                  CloseButtonText="Cancel"
+                  IsPrimaryButtonEnabled="{Binding HasSelectedPartitions}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Background="White">
+
+    <ui:ContentDialog.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </ui:ContentDialog.Resources>
+
+    <Border Background="White" 
+            CornerRadius="8" 
+            BorderBrush="LightGray" 
+            BorderThickness="1"
+            Margin="0,30,0,30">
+        <Grid Margin="24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" 
+                           Orientation="Horizontal"
+                           VerticalAlignment="Center">
+                    <CheckBox x:Name="SelectAllCheckBox"
+                             IsChecked="{Binding SelectAllState, Mode=TwoWay}"
+                             VerticalAlignment="Center"
+                             Margin="0,0,8,0"
+                             MinHeight="24"
+                             MinWidth="24"/>
+                    <TextBlock Text="Select All"
+                              VerticalAlignment="Center"
+                              FontWeight="SemiBold"
+                              FontSize="14"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="1"
+                          Text="{Binding StatusText}"
+                          VerticalAlignment="Center"
+                          FontSize="12"
+                          Foreground="{StaticResource SecondaryTextBrush}"
+                          HorizontalAlignment="Right"/>
+            </Grid>
+
+            <ScrollViewer Grid.Row="1" 
+                         VerticalScrollBarVisibility="Auto"
+                         HorizontalScrollBarVisibility="Disabled"
+                         Background="White"
+                         BorderBrush="LightGray"
+                         BorderThickness="1"
+                         Padding="12"
+                         MaxHeight="300"
+                         Margin="0,0,0,12">
+
+                <ItemsControl ItemsSource="{Binding Partitions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,2" 
+                                   Padding="12,8"
+                                   Background="WhiteSmoke"
+                                   BorderBrush="LightGray"
+                                   BorderThickness="1"
+                                   CornerRadius="4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <CheckBox Grid.Column="0" 
+                                             IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                             VerticalAlignment="Center"
+                                             Margin="0,0,12,0"
+                                             MinHeight="20"
+                                             MinWidth="20"/>
+
+                                    <TextBlock Grid.Column="1"
+                                              Text="{Binding Name}"
+                                              VerticalAlignment="Center"
+                                              FontFamily="Consolas"
+                                              FontSize="13"/>
+
+                                    <TextBlock Grid.Column="2"
+                                              Text="{Binding ImageFileName}"
+                                              VerticalAlignment="Center"
+                                              FontSize="11"
+                                              Foreground="Gray"
+                                              Margin="12,0,0,0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <CheckBox x:Name="SkipSecureCheckBox"
+                      Grid.Row="2"
+                      Content="Skip secure partitions"
+                      IsChecked="{Binding SkipSecurePartitions, Mode=TwoWay}"
+                      Margin="0,0,0,12"
+                      VerticalAlignment="Center"
+                      FontSize="13"/>
+
+            <StackPanel Grid.Row="3" 
+                       Orientation="Horizontal" 
+                       HorizontalAlignment="Right" 
+                       Margin="0,0,0,0">
+
+                <ui:Button x:Name="CancelButton"
+                          Content="Cancel"
+                          Margin="0,0,10,0"
+                          MinWidth="100"
+                          Click="CancelButton_Click"/>
+
+                <ui:Button x:Name="ProceedButton"
+                          Content="Proceed"
+                          IsEnabled="{Binding HasSelectedPartitions}"
+                          MinWidth="100"
+                          Appearance="Primary"
+                          Click="ProceedButton_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</ui:ContentDialog>
