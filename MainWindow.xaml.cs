@@ -49,6 +49,7 @@ namespace Kirin_Tool
     public partial class MainWindow : FluentWindow, INotifyPropertyChanged
     {
         private readonly FastbootClient _fastbootClient;
+        private readonly FastbootClient _xmlFastbootClient;
         private readonly FirmwareUnlocker _firmwareUnlocker;
         private readonly OemInfoService _oemInfoService;
         private readonly IContentDialogService _contentDialogService;
@@ -145,9 +146,10 @@ namespace Kirin_Tool
             _contentDialogService = new ContentDialogService();
 
             _fastbootClient = new FastbootClient();
+            _xmlFastbootClient = new FastbootClient("fastboot/xml/fastboot.exe");
             _firmwareUnlocker = new FirmwareUnlocker();
             _oemInfoService = new OemInfoService(_fastbootClient);
-            _fastbootFlasherService = new FastbootFlasherService(_fastbootClient);
+            _fastbootFlasherService = new FastbootFlasherService(_xmlFastbootClient);
 
             _usbUpdateFlasherService = new USBUpdateFlasherService(
                 msg => { }, 
@@ -238,7 +240,7 @@ namespace Kirin_Tool
 
         private async void DumpPartitions_Click(object sender, RoutedEventArgs e)
         {
-            if (!await _fastbootClient.IsDeviceConnected())
+            if (!await _xmlFastbootClient.IsDeviceConnected())
             {
                 await ShowMessageBox("Device Not Found", "No device detected in fastboot mode. Please connect your device and try again.");
                 return;
@@ -316,7 +318,7 @@ namespace Kirin_Tool
 
         private async void FlashFromXml_Click(object sender, RoutedEventArgs e)
         {
-            if (!await _fastbootClient.IsDeviceConnected())
+            if (!await _xmlFastbootClient.IsDeviceConnected())
             {
                 await ShowMessageBox("Device Not Found", "No device detected in fastboot mode. Please connect your device and try again.");
                 return;
