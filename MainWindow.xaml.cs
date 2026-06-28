@@ -1455,6 +1455,22 @@ namespace Kirin_Tool
                 return;
             }
 
+            if (cpu == "hisi820" || cpu == "hisi985")
+            {
+                var warningResult = await _contentDialogService.ShowSimpleDialogAsync(new SimpleContentDialogCreateOptions()
+                {
+                    Title = "Important Warning",
+                    Content = "By loading unlocked fastboot on this device, you will permanently increment ARB, \nmeaning you cannot install any operating system older than HarmonyOS 2. \n\nAre you absolutely sure you want to continue?",
+                    PrimaryButtonText = "Continue",
+                    CloseButtonText = "Cancel"
+                });
+
+                if (warningResult != ContentDialogResult.Primary)
+                {
+                    return;
+                }
+            }
+
             var progressItems = new ObservableCollection<ProgressItemViewModel>(
                 FirmwareUnlocker.CpuAddresses[cpu].Select(p => new ProgressItemViewModel { FileName = p.Name, StatusText = "Pending" })
             );

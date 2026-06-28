@@ -81,6 +81,32 @@ namespace Kirin_Tool.Services.USBUpdate
             }
         }
 
+        public void PatchXloaderHeader(string headerPath)
+        {
+            if (!File.Exists(headerPath))
+            {
+                throw new Exception("XLOADER.img.header not found to patch");
+            }
+
+            byte[] headerData = File.ReadAllBytes(headerPath);
+            if (headerData.Length < 92)
+            {
+                throw new Exception("XLOADER.img.header is too small to patch");
+            }
+
+            string name = "PRELOADER";
+            byte[] nameBytes = System.Text.Encoding.ASCII.GetBytes(name);
+
+            for (int i = 0; i < 32; i++)
+            {
+                headerData[60 + i] = 0x00;
+            }
+
+            Array.Copy(nameBytes, 0, headerData, 60, nameBytes.Length);
+
+            File.WriteAllBytes(headerPath, headerData);
+        }
+
         public bool VerifyPatch(string originalPath, string patchedPath)
         {
             byte[] originalData = File.ReadAllBytes(originalPath).Take(0x8000).ToArray();

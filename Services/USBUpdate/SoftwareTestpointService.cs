@@ -62,14 +62,20 @@ namespace Kirin_Tool.Services.USBUpdate
             extractor.ExtractUpToXloader(updateAppPath);
 
             string xloaderPath = Path.Combine(_dloadDirectory, "XLOADER.img");
+            string xloaderHeaderPath = Path.Combine(_dloadDirectory, "XLOADER.img.header");
             if (!File.Exists(xloaderPath))
             {
                 throw new Exception("Extraction failed, XLOADER not found in Base UPDATE.");
             }
-
+            if (!File.Exists(xloaderHeaderPath))
+            {
+                throw new Exception("Extraction failed, XLOADER header not found in Base UPDATE.");
+            }
 
             string xloaderBackupPath = Path.Combine(_dloadDirectory, "XLOADER_BAK.img");
+            string xloaderHeaderBackupPath = Path.Combine(_dloadDirectory, "XLOADER_HEADER_BAK.img");
             File.Copy(xloaderPath, xloaderBackupPath, true);
+            File.Copy(xloaderHeaderPath, xloaderHeaderBackupPath, true);
 
             try
             {
@@ -80,6 +86,7 @@ namespace Kirin_Tool.Services.USBUpdate
                     throw new Exception("Failed to patch XLOADER");
                 }
 
+                patcher.PatchXloaderHeader(xloaderHeaderPath);
 
                 patcher.ModifyListTxtStopAfterXloader();
 
@@ -98,6 +105,11 @@ namespace Kirin_Tool.Services.USBUpdate
                 {
                     File.Copy(xloaderBackupPath, xloaderPath, true);
                     File.Delete(xloaderBackupPath);
+                }
+                if (File.Exists(xloaderHeaderBackupPath))
+                {
+                    File.Copy(xloaderHeaderBackupPath, xloaderHeaderPath, true);
+                    File.Delete(xloaderHeaderBackupPath);
                 }
             }
         }
