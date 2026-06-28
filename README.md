@@ -12,7 +12,7 @@ This is the ONLY free public Huawei tool with Kirin 990 support!
 
 You can rebrand, flash and unlock(even Kirin 990's bootloader!) Huawei devices!
 
-We support Kirin 620-990 5g SoCs (As of 2.4, excluding 990 4g)!
+We support Kirin 620-990 5g SoCs (As of 2.4.2, excluding 990 4g)!
 
 # Links
 
